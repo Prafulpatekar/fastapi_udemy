@@ -10,6 +10,16 @@ def index():
 def index2():
     return "Hi!"
 
+# Path parameters
+@app.get('/blog/all')
+def blog():
+    return {"message":"All Blogs provided!"}
+
+@app.get('/blog/{id}')
+def blog(id:int):
+    return {"message":f"Blog with id {id}"}
+
+# Predefined value with ENUM
 # command to run 
 # if myApp = FastAPI()
 # then => uvicorn main:myApp --reload
