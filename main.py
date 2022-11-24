@@ -14,7 +14,9 @@ app = FastAPI()
 # Path parameters
 @app.get(
     '/blog/all',
-    tags=['blog']
+    tags=['blog'],
+    summary="This retrives all blogs",
+    description="This api call simulates all blog !"
     )
 def blog():
     return {"message":"All Blogs provided!"}
@@ -43,6 +45,14 @@ def get_all_blog_query_parameters(response:Response,page=1,page_size:Optional[in
 
 @app.get('/blog/{id}/comments/{comment_id}',tags=['blog','comment'])
 def get_comment(response:Response,id:int,comment_id:int,valid:bool=True,username:Optional[str]="Praful"):
+    """
+    Simulates retriveing a common blog
+
+    - **id** mandatory path parameter
+    - **comment_id** mandatory path parameter
+    - **valid** optional query parameter
+    - **username** optional query parameter
+    """
     response.status_code = status.HTTP_200_OK
     return {"message":f"Blog id {id} comment {comment_id} valid {valid} username {username}"}
 
