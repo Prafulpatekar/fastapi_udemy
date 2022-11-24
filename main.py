@@ -16,7 +16,8 @@ app = FastAPI()
     '/blog/all',
     tags=['blog'],
     summary="This retrives all blogs",
-    description="This api call simulates all blog !"
+    description="This api call simulates all blog !",
+    response_description="The list of blog is available!"
     )
 def blog():
     return {"message":"All Blogs provided!"}
