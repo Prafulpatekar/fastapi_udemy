@@ -1,6 +1,7 @@
-from fastapi import APIRouter,status,Response
+from fastapi import APIRouter,status,Response,Depends
 from enum import Enum
 from typing import Optional
+from .blog_post import required_func
 
 router = APIRouter(
     prefix='/blog',
@@ -34,9 +35,12 @@ def blog(id:int,response:Response):
     return {"message":f"Blog with id {id}"}
 
 @router.get('/all/query_parameters')
-def get_all_blog_query_parameters(response:Response,page=1,page_size:Optional[int]=None):
+def get_all_blog_query_parameters(response:Response,page=1,page_size:Optional[int]=None,req_params:dict=Depends(required_func)):
     response.status_code =status.HTTP_200_OK
-    return {"message":f"Blog page no. {page} on page size {page_size}"}
+    return {
+        "message":f"Blog page no. {page} on page size {page_size}",
+        "req":req_params
+        }
 
 @router.get('/{id}/comments/{comment_id}',tags=['comment'])
 def get_comment(response:Response,id:int,comment_id:int,valid:bool=True,username:Optional[str]="Praful"):

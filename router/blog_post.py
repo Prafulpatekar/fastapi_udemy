@@ -35,3 +35,6 @@ def create_comment(
                 )
         ):
     return {"blog":blog,"id":id,"comment_id":comment_id,"content":content}
+
+def required_func():
+    return {"message":"Auth function"}
