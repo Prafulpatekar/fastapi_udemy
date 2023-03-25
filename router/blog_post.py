@@ -26,7 +26,7 @@ def create_comment(
         title='Id for comment',
         description="Some description",
         alias="commentId",
-        deprecated=True,
+        deprecated=False,
         content:str=Body(
                 ...,
                 min_length=5,
