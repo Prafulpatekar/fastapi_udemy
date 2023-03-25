@@ -17,6 +17,7 @@ def blog():
     return {"message":"All Blogs provided!"}
 
 class BlogType(str , Enum):
+    # Predefined value with ENUM
     short = 'short'
     story = 'story'
     howto = 'howto'
@@ -51,8 +52,3 @@ def get_comment(response:Response,id:int,comment_id:int,valid:bool=True,username
     response.status_code = status.HTTP_200_OK
     return {"message":f"Blog id {id} comment {comment_id} valid {valid} username {username}"}
 
-# Predefined value with ENUM
-# command to run 
-# if myApp = FastAPI()
-# then => uvicorn main:myApp --reload
-# => uvicorn main:app --reload

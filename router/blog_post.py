@@ -8,11 +8,11 @@ router = APIRouter(
 )
 
 class BlogModel(BaseModel):
-    title: str
+    title: str = "Let Give title"
     content: str
     comments:int
     published: Optional[bool]
 
 @router.post('/new/{id}')
-def create_blog(blog:BlogModel,id:int,version:int=1):
+def create_blog(blog:BlogModel,id:int,version:float=1):
     return {"data":blog,"id":id,"version":version}
