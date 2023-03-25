@@ -1,6 +1,11 @@
+# Third Party Library
 from fastapi import FastAPI,status,Response
+
+# Standard Library
 from enum import Enum
 from typing import Optional
+
+# Fastapi APP
 app = FastAPI()
 
 # @app.get('/hello')
@@ -23,6 +28,7 @@ def blog():
     return {"message":"All Blogs provided!"}
 
 class BlogType(str , Enum):
+    # Predefined value with ENUM
     short = 'short'
     story = 'story'
     howto = 'howto'
@@ -41,7 +47,7 @@ def blog(id:int,response:Response):
 
 @app.get('/blog/all/query_parameters',tags=['blog'])
 def get_all_blog_query_parameters(response:Response,page=1,page_size:Optional[int]=None):
-    response.status_code =status.HTTP_200_OK
+    response.status_code = status.HTTP_200_OK
     return {"message":f"Blog page no. {page} on page size {page_size}"}
 
 @app.get('/blog/{id}/comments/{comment_id}',tags=['blog','comment'])
@@ -57,8 +63,3 @@ def get_comment(response:Response,id:int,comment_id:int,valid:bool=True,username
     response.status_code = status.HTTP_200_OK
     return {"message":f"Blog id {id} comment {comment_id} valid {valid} username {username}"}
 
-# Predefined value with ENUM
-# command to run 
-# if myApp = FastAPI()
-# then => uvicorn main:myApp --reload
-# => uvicorn main:app --reload
