@@ -34,7 +34,7 @@ def blog(id:int,response:Response):
     if id > 5:
         response.status_code = status.HTTP_404_NOT_FOUND
         return {"message":f"Erro Blog with id {id} not found"}
-    response.status_code =status.HTTP_200_OK
+    response.status_code = status.HTTP_200_OK
     return {"message":f"Blog with id {id}"}
 
 @router.get('/all/query_parameters')
