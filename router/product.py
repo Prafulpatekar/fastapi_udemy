@@ -3,6 +3,9 @@ from fastapi import  Cookie, APIRouter,Header,Form
 from fastapi.responses import Response
 # Standard Library
 from typing import List,Optional
+import time
+# Project Library
+from custom_log import log
 
 router = APIRouter(
     prefix='/product',
@@ -11,10 +14,17 @@ router = APIRouter(
 
 products = ['Laptop','Mobile','Mouse']
 
+
+async def time_consuming_func():
+    time.sleep(10)
+    return "Complete"
+
 @router.get('/all')
-def get_all_product():
+async def get_all_product():
+    log("Product API","Call to get all products")
+    await time_consuming_func()
     data = " ".join(products)
-    response = Response(content=data,media_type='application/json')
+    response = Response(content=data,media_type='text/plain')
     response.set_cookie(key='test_cookie',value="test_cookie_value")
     return response
 
