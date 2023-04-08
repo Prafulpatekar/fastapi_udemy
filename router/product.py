@@ -1,6 +1,7 @@
 # Third Party Library
 from fastapi import  Cookie, APIRouter,Header,Form
 from fastapi.responses import Response
+from fastapi.background import BackgroundTasks
 # Standard Library
 from typing import List,Optional
 import time
@@ -46,6 +47,10 @@ def get_product(
 
 # FORM HANDLer
 @router.post('/new')
-def create_product(name:str=Form(...)):
+def create_product(bt: BackgroundTasks,name:str=Form(...)):
+    bt.add_task(log_background_task,f"Calling create product {time.time()}")
     products.append(name)
     return products
+
+def log_background_task(message:str):
+    log("Product API",message)
